@@ -16,7 +16,7 @@ internal static class Program
         //AppContext appContext = new AppContext();
 
         //Application.Run(appContext);
-        Application.Run(new FormLauncher());
+        Application.Run(new FormChooseMode());
         //Application.Run(new FormPlayerVsPlayer());
     }
 }

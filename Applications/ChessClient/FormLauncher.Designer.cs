@@ -45,10 +45,10 @@ partial class FormLauncher
         pictureBox1.BackgroundImage = Resources.WhiteRook;
         pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
         pictureBox1.InitialImage = null;
-        pictureBox1.Location = new Point(22, 26);
-        pictureBox1.Margin = new Padding(6);
+        pictureBox1.Location = new Point(17, 20);
+        pictureBox1.Margin = new Padding(5, 5, 5, 5);
         pictureBox1.Name = "pictureBox1";
-        pictureBox1.Size = new Size(186, 213);
+        pictureBox1.Size = new Size(143, 166);
         pictureBox1.TabIndex = 0;
         pictureBox1.TabStop = false;
         // 
@@ -60,10 +60,10 @@ partial class FormLauncher
         btnPlayerVsPlayer.FlatStyle = FlatStyle.Flat;
         btnPlayerVsPlayer.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
         btnPlayerVsPlayer.ForeColor = Color.White;
-        btnPlayerVsPlayer.Location = new Point(346, 315);
-        btnPlayerVsPlayer.Margin = new Padding(6);
+        btnPlayerVsPlayer.Location = new Point(266, 246);
+        btnPlayerVsPlayer.Margin = new Padding(5, 5, 5, 5);
         btnPlayerVsPlayer.Name = "btnPlayerVsPlayer";
-        btnPlayerVsPlayer.Size = new Size(229, 49);
+        btnPlayerVsPlayer.Size = new Size(176, 38);
         btnPlayerVsPlayer.TabIndex = 1;
         btnPlayerVsPlayer.Text = "Player vs Player";
         btnPlayerVsPlayer.UseVisualStyleBackColor = false;
@@ -78,10 +78,10 @@ partial class FormLauncher
         btnPlayerVsAI.FlatStyle = FlatStyle.Flat;
         btnPlayerVsAI.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
         btnPlayerVsAI.ForeColor = Color.White;
-        btnPlayerVsAI.Location = new Point(346, 377);
-        btnPlayerVsAI.Margin = new Padding(6);
+        btnPlayerVsAI.Location = new Point(266, 295);
+        btnPlayerVsAI.Margin = new Padding(5, 5, 5, 5);
         btnPlayerVsAI.Name = "btnPlayerVsAI";
-        btnPlayerVsAI.Size = new Size(229, 49);
+        btnPlayerVsAI.Size = new Size(176, 38);
         btnPlayerVsAI.TabIndex = 1;
         btnPlayerVsAI.Text = "Player vs AI";
         btnPlayerVsAI.UseVisualStyleBackColor = false;
@@ -96,10 +96,10 @@ partial class FormLauncher
         btnAIVsAI.FlatStyle = FlatStyle.Flat;
         btnAIVsAI.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
         btnAIVsAI.ForeColor = Color.White;
-        btnAIVsAI.Location = new Point(346, 439);
-        btnAIVsAI.Margin = new Padding(6);
+        btnAIVsAI.Location = new Point(266, 343);
+        btnAIVsAI.Margin = new Padding(5, 5, 5, 5);
         btnAIVsAI.Name = "btnAIVsAI";
-        btnAIVsAI.Size = new Size(229, 49);
+        btnAIVsAI.Size = new Size(176, 38);
         btnAIVsAI.TabIndex = 1;
         btnAIVsAI.Text = "AI vs AI";
         btnAIVsAI.UseVisualStyleBackColor = false;
@@ -113,10 +113,10 @@ partial class FormLauncher
         btnJoinServer.FlatStyle = FlatStyle.Flat;
         btnJoinServer.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
         btnJoinServer.ForeColor = Color.White;
-        btnJoinServer.Location = new Point(267, 587);
-        btnJoinServer.Margin = new Padding(6);
+        btnJoinServer.Location = new Point(205, 459);
+        btnJoinServer.Margin = new Padding(5, 5, 5, 5);
         btnJoinServer.Name = "btnJoinServer";
-        btnJoinServer.Size = new Size(184, 49);
+        btnJoinServer.Size = new Size(142, 38);
         btnJoinServer.TabIndex = 1;
         btnJoinServer.Text = "Join Server";
         btnJoinServer.UseVisualStyleBackColor = false;
@@ -130,10 +130,10 @@ partial class FormLauncher
         btnHostServer.FlatStyle = FlatStyle.Flat;
         btnHostServer.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
         btnHostServer.ForeColor = Color.White;
-        btnHostServer.Location = new Point(462, 587);
-        btnHostServer.Margin = new Padding(6);
+        btnHostServer.Location = new Point(355, 459);
+        btnHostServer.Margin = new Padding(5, 5, 5, 5);
         btnHostServer.Name = "btnHostServer";
-        btnHostServer.Size = new Size(184, 49);
+        btnHostServer.Size = new Size(142, 38);
         btnHostServer.TabIndex = 1;
         btnHostServer.Text = "Host Server";
         btnHostServer.UseVisualStyleBackColor = false;
@@ -144,30 +144,30 @@ partial class FormLauncher
         pictureBox2.BackgroundImage = Resources.BlackQueen;
         pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
         pictureBox2.InitialImage = null;
-        pictureBox2.Location = new Point(711, 26);
-        pictureBox2.Margin = new Padding(6);
+        pictureBox2.Location = new Point(547, 20);
+        pictureBox2.Margin = new Padding(5, 5, 5, 5);
         pictureBox2.Name = "pictureBox2";
-        pictureBox2.Size = new Size(186, 213);
+        pictureBox2.Size = new Size(143, 166);
         pictureBox2.TabIndex = 0;
         pictureBox2.TabStop = false;
         // 
         // label1
         // 
         label1.Font = new Font("Microsoft Sans Serif", 26.25F, FontStyle.Regular, GraphicsUnit.Point);
-        label1.Location = new Point(219, 26);
-        label1.Margin = new Padding(6, 0, 6, 0);
+        label1.Location = new Point(168, 20);
+        label1.Margin = new Padding(5, 0, 5, 0);
         label1.Name = "label1";
-        label1.Size = new Size(481, 213);
+        label1.Size = new Size(370, 166);
         label1.TabIndex = 2;
         label1.Text = "Chess";
         label1.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // FormLauncher
         // 
-        AutoScaleDimensions = new SizeF(13F, 32F);
+        AutoScaleDimensions = new SizeF(10F, 25F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.White;
-        ClientSize = new Size(919, 672);
+        ClientSize = new Size(707, 525);
         Controls.Add(label1);
         Controls.Add(btnHostServer);
         Controls.Add(btnJoinServer);
@@ -177,7 +177,7 @@ partial class FormLauncher
         Controls.Add(pictureBox2);
         Controls.Add(pictureBox1);
         FormBorderStyle = FormBorderStyle.Fixed3D;
-        Margin = new Padding(6);
+        Margin = new Padding(5, 5, 5, 5);
         MaximizeBox = false;
         Name = "FormLauncher";
         StartPosition = FormStartPosition.CenterScreen;

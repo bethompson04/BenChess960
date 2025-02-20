@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 
 namespace Chess.Core
 {
+
     public enum GameOverType
     {
         Checkmate,
@@ -52,6 +53,8 @@ namespace Chess.Core
 
         #endregion
 
+        public bool isChess960 = false;
+
         #region constructor
 
         // default constructor
@@ -99,6 +102,15 @@ namespace Chess.Core
 
         private void AddDefaultPieces()
         {
+            List<int> piecePos = new List<int> { 0,1,2,3,4,5,6,7 };
+            // DEFAULT: -- Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook --
+            // 0,7 = Rook
+            // 1,6 = Knight
+            // 2,5 = Bishop
+            // 3 = Queen
+            // 4 = King
+
+
             //loop through each tile in 2d array and add pieces to board tiles
             for (int i = 0; i < 8; i++)
             {
@@ -109,35 +121,76 @@ namespace Chess.Core
                     if (i == 6)
                         _tiles[i, j].Piece = new Pawn('w', i, j); // adds 8 white pawns to 7th row
 
-                    // player 1's backrow
-                    if (i == 7)
+
+                    if (isChess960) // Checks if the gamemode is Chess960 or not
                     {
-                        if (j == 0 || j == 7)
-                            _tiles[i, j].Piece = new Rook('w', i, j); // adds both white rooks
-                        if (j == 1 || j == 6)
-                            _tiles[i, j].Piece = new Knight('w', i, j); // adds both white knights
-                        if (j == 2 || j == 5)
-                            _tiles[i, j].Piece = new Bishop('w', i, j); // adds both white bishops
-                        if (j == 3)
-                            _tiles[i, j].Piece = new Queen('w', i, j); // adds white queen
-                        if (j == 4)
-                            _tiles[i, j].Piece = new King('w', i, j); // adds white king
+                        // Chess 960 Randomized board start
+
+                        // player 1's backrow
+                        if (i == 7)
+                        {
+                            if (j == 0 || j == 7)
+                                _tiles[i, j].Piece = new Rook('w', i, j); // adds both white rooks
+                            if (j == 1 || j == 6)
+                                _tiles[i, j].Piece = new Knight('w', i, j); // adds both white knights
+                            if (j == 2 || j == 5)
+                                _tiles[i, j].Piece = new Bishop('w', i, j); // adds both white bishops
+                            if (j == 3)
+                                _tiles[i, j].Piece = new Queen('w', i, j); // adds white queen
+                            if (j == 4)
+                                _tiles[i, j].Piece = new King('w', i, j); // adds white king
+                        }
+
+                        // player 2's backrow
+                        if (i == 0)
+                        {
+                            if (j == 0 || j == 7)
+                                _tiles[i, j].Piece = new Rook('b', i, j); // adds both black rooks
+                            if (j == 1 || j == 6)
+                                _tiles[i, j].Piece = new Knight('b', i, j); // adds both black knights
+                            if (j == 2 || j == 5)
+                                _tiles[i, j].Piece = new Bishop('b', i, j); // adds both black bishops
+                            if (j == 3)
+                                _tiles[i, j].Piece = new Queen('b', i, j); // adds black queen
+                            if (j == 4)
+                                _tiles[i, j].Piece = new King('b', i, j); // adds black king
+                        }
+                    }
+                    else
+                    {
+                        // Default Chess board starting layout
+
+                        // player 1's backrow
+                        if (i == 7)
+                        {
+                            if (j == 0 || j == 7)
+                                _tiles[i, j].Piece = new Rook('w', i, j); // adds both white rooks
+                            if (j == 1 || j == 6)
+                                _tiles[i, j].Piece = new Knight('w', i, j); // adds both white knights
+                            if (j == 2 || j == 5)
+                                _tiles[i, j].Piece = new Bishop('w', i, j); // adds both white bishops
+                            if (j == 3)
+                                _tiles[i, j].Piece = new Queen('w', i, j); // adds white queen
+                            if (j == 4)
+                                _tiles[i, j].Piece = new King('w', i, j); // adds white king
+                        }
+
+                        // player 2's backrow
+                        if (i == 0)
+                        {
+                            if (j == 0 || j == 7)
+                                _tiles[i, j].Piece = new Rook('b', i, j); // adds both black rooks
+                            if (j == 1 || j == 6)
+                                _tiles[i, j].Piece = new Knight('b', i, j); // adds both black knights
+                            if (j == 2 || j == 5)
+                                _tiles[i, j].Piece = new Bishop('b', i, j); // adds both black bishops
+                            if (j == 3)
+                                _tiles[i, j].Piece = new Queen('b', i, j); // adds black queen
+                            if (j == 4)
+                                _tiles[i, j].Piece = new King('b', i, j); // adds black king
+                        }
                     }
 
-                    // player 2's backrow
-                    if (i == 0)
-                    {
-                        if (j == 0 || j == 7)
-                            _tiles[i, j].Piece = new Rook('b', i, j); // adds both black rooks
-                        if (j == 1 || j == 6)
-                            _tiles[i, j].Piece = new Knight('b', i, j); // adds both black knights
-                        if (j == 2 || j == 5)
-                            _tiles[i, j].Piece = new Bishop('b', i, j); // adds both black bishops
-                        if (j == 3)
-                            _tiles[i, j].Piece = new Queen('b', i, j); // adds black queen
-                        if (j == 4)
-                            _tiles[i, j].Piece = new King('b', i, j); // adds black king
-                    }
                 }
             }
         }
