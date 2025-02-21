@@ -13,15 +13,16 @@ namespace ChessClient;
 
 public partial class FormLauncher : Form
 {
-    public FormLauncher()
+    public FormLauncher(bool is960)
     {
+        isMode960 = is960;
         InitializeComponent();
         this.Icon = new Icon("icon.ico");
     }
 
     private void btnPlayerVsPlayer_Click(object sender, EventArgs e)
     {
-        FormPlayerVsPlayer frmPvP = new FormPlayerVsPlayer();
+        FormPlayerVsPlayer frmPvP = new FormPlayerVsPlayer(isMode960);
         frmPvP.Show();
     }
 

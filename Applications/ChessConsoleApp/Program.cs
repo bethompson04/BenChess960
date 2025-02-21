@@ -5,7 +5,7 @@ internal class Program
 {
     private static void Main()
     {
-        var board = new Board(8, true);
+        var board = new Board(8, true, false);
 
         while (true)
         {

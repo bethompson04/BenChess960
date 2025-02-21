@@ -10,7 +10,7 @@ namespace Chess.Tests
         [Fact]
         public void WhitePawnCanMoveForward()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var whitePawn = board.AddPiece<Pawn>(1, 1, 'w');
 
             // move up 1 tile
@@ -23,7 +23,7 @@ namespace Chess.Tests
         [Fact] 
         public void WhitePawnCanCaptureForwardRight()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var whitePawn = board.AddPiece<Pawn>(2, 2, 'w');
             var blackPawn = board.AddPiece<Pawn>(1, 3, 'b');
 
@@ -38,7 +38,7 @@ namespace Chess.Tests
         [Fact]
         public void WhitePawnCanCaptureForwardLeft()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var whitePawn = board.AddPiece<Pawn>(2, 2, 'w');
             var blackPawn = board.AddPiece<Pawn>(1, 1, 'b');
 
@@ -53,7 +53,7 @@ namespace Chess.Tests
         [Fact]
         public void WhitePawnCANNOTMoveBackward()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var blackPawn = board.AddPiece<Pawn>(1, 1, 'w');
             bool moveSuccessful = board.TryMakeMove(board.Tiles[1, 1], board.Tiles[2, 1]);
 
@@ -64,7 +64,7 @@ namespace Chess.Tests
         [Fact] 
         public void WhitePawnCANNOTCaptureForwardPiece()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var whitePawn = board.AddPiece<Pawn>(2, 2, 'w');
             var blackPawn = board.AddPiece<Pawn>(1, 2, 'b');
 
@@ -80,7 +80,7 @@ namespace Chess.Tests
         [Fact]
         public void WhitePawnCanJumpForwardTwiceFromStartingPosition()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var whitePawn = board.AddPiece<Pawn>(6, 6, 'w');
 
             // move forward 2 tiles
@@ -97,7 +97,7 @@ namespace Chess.Tests
         [Fact]
         public void BlackPawnCanMoveForward()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var blackPawn = board.AddPiece<Pawn>(1, 1, 'b');
             bool moveSuccessful = board.TryMakeMove(board.Tiles[1, 1], board.Tiles[2, 1]);
 
@@ -108,7 +108,7 @@ namespace Chess.Tests
         [Fact]
         public void BlackPawnCanCaptureForwardRight()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var blackPawn = board.AddPiece<Pawn>(1, 3, 'b');
             var whitePawn = board.AddPiece<Pawn>(2, 2, 'w');
 
@@ -121,7 +121,7 @@ namespace Chess.Tests
         [Fact]
         public void BlackPawnCanCaptureForwardLeft()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var blackPawn = board.AddPiece<Pawn>(1, 1, 'b');
             var whitePawn = board.AddPiece<Pawn>(2, 2, 'w');
 
@@ -134,7 +134,7 @@ namespace Chess.Tests
         [Fact]
         public void BlackPawnCANNOTMoveBackward()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var blackPawn = board.AddPiece<Pawn>(1, 1, 'b');
             bool moveSuccessful = board.TryMakeMove(board.Tiles[1, 1], board.Tiles[0, 1]);
 
@@ -145,7 +145,7 @@ namespace Chess.Tests
         [Fact]
         public void BlackPawnCANNOTCaptureForwardPiece()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var blackPawn = board.AddPiece<Pawn>(1, 2, 'b');
             var whitePawn = board.AddPiece<Pawn>(2, 2, 'w');
 
@@ -159,7 +159,7 @@ namespace Chess.Tests
         [Fact]
         public void BlackPawnCanJumpForwardTwiceFromStartingPosition()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var blackPawn = board.AddPiece<Pawn>(1, 1, 'b');
 
             // move forward 2 tiles

@@ -2,6 +2,8 @@
 
 partial class FormLauncher
 {
+    // Variable and constructor to pass variable
+    protected bool isMode960;
     /// <summary>
     /// Required designer variable.
     /// </summary>
@@ -159,7 +161,13 @@ partial class FormLauncher
         label1.Name = "label1";
         label1.Size = new Size(370, 166);
         label1.TabIndex = 2;
-        label1.Text = "Chess";
+        if (isMode960)
+        {
+            label1.Text = "Chess960";
+        }else
+        {
+            label1.Text = "Chess";
+        }
         label1.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // FormLauncher

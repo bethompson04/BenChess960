@@ -30,7 +30,7 @@ public partial class FormAIvsAI : Form
         this.MinimumSize = this.Size;
         this.Text = "";
 
-        _board = new Board(BOARDSIZE, true);
+        _board = new Board(BOARDSIZE, true, false);
 
         ChessUtils.CreateTiles(this, _buttonArray, _board, tileSize, Color1, Color2, false, null);
         ChessUtils.DrawSymbols(_buttonArray, _board);

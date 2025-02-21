@@ -1,5 +1,6 @@
 using Chess.Core;
 using Chess.Core.Pieces;
+using System.Diagnostics;
 using System.Resources;
 
 namespace ChessClient;
@@ -19,14 +20,22 @@ public partial class FormPlayerVsPlayer : Form
     private Button[,] _buttonArray = new Button[BOARDSIZE, BOARDSIZE];
     private Board _board;
 
-    public FormPlayerVsPlayer()
+    protected bool isMode960 = false;
+
+    public FormPlayerVsPlayer(bool is960)
     {
         InitializeComponent();
+
+        isMode960 = is960;
+        Debug.Print(isMode960.ToString());
+
         this.Icon = new Icon("icon.ico");
         this.StartPosition = FormStartPosition.CenterScreen;
         this.MinimumSize = this.Size;
 
-        _board = new Board(BOARDSIZE, true);
+        Debug.Print((isMode960) ? "yes" :  "no");
+
+        _board = new Board(BOARDSIZE, true, isMode960);
         //_board.AddPiece<King>(2, 4, 'b');
         //_board.AddPiece<Queen>(3, 3, 'b');
         //_board.AddPiece<King>(7, 4, 'w');
@@ -146,7 +155,7 @@ public partial class FormPlayerVsPlayer : Form
     private void btnReset_Click(object sender, EventArgs e)
     {
         // reset the game 
-        _board = new Board(BOARDSIZE, true);
+        _board = new Board(BOARDSIZE, true, isMode960);
 
         if (_turn == 'b')
             SwapTurns();

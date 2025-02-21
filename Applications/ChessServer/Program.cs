@@ -42,7 +42,7 @@ namespace ChessServer
 
             while (_p1 != null && _p2 != null)
             {
-                var board = new Board(8, true);
+                var board = new Board(8, true, false);
                 _game = new Game(board, _p1, _p2);
                 _game.Board.OnGameOver += Board_OnGameOver;
                 _server.ReplyAll(UpdateGamePacket());
@@ -70,7 +70,7 @@ namespace ChessServer
         private static Task WaitForPlayers()
         {
             return Task.Factory.StartNew(() => {
-                var board = new Board(8, true);
+                var board = new Board(8, true, false);
 
                 while (!_gameStarted)
                 {

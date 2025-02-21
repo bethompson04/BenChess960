@@ -101,7 +101,7 @@ partial class FormPlayerVsPlayer
         MaximizeBox = false;
         Name = "FormPlayerVsPlayer";
         StartPosition = FormStartPosition.CenterScreen;
-        Text = "Chess";
+        Text = (isMode960) ? "Chess960" : "Chess";
         ResumeLayout(false);
         PerformLayout();
     }

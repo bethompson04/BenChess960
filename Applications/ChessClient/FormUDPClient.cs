@@ -12,11 +12,10 @@ public partial class FormUDPClient : Form
 
     private Button[,] _buttons = new Button[8, 8];
 
-    private Board _board = new Board(8, false);
+    private Board _board = new Board(8, false, false);
     private Tile? _selectedTile = null;
     private Player _clientPlayer;
-    private char _turn;
-    private bool _boardIsFlipped = false;
+    private char _turn = 'w';
 
     public FormUDPClient(string name, string ip, int port)
     {

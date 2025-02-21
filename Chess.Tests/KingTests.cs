@@ -10,7 +10,7 @@ namespace Chess.Tests
         [Fact]
         public void KingCanMoveLeft()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var king = board.AddPiece<King>(3, 3, 'w');
 
             // move left 1 tile
@@ -23,7 +23,7 @@ namespace Chess.Tests
         [Fact]
         public void KingCanMoveRight()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var king = board.AddPiece<King>(3, 3, 'w');
 
             // move right 1 tile
@@ -36,7 +36,7 @@ namespace Chess.Tests
         [Fact]
         public void KingCanMoveUp()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var king = board.AddPiece<King>(3, 3, 'b');
 
             // move right 1 tile
@@ -49,7 +49,7 @@ namespace Chess.Tests
         [Fact]
         public void KingCanMoveDown()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var king = board.AddPiece<King>(3, 3, 'b');
 
             // move right 1 tile
@@ -62,7 +62,7 @@ namespace Chess.Tests
         [Fact]
         public void KingCanMoveToAllAdjacentTiles()
         {
-            var board = new Board(8, false);
+            var board = new Board(8, false, false);
             var king = board.AddPiece<King>(3, 3, 'b');
             var moves = king.GetValidMoves(board);
             Assert.Equal(8, moves.Count);

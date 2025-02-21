@@ -28,7 +28,7 @@ class AppContext : ApplicationContext
 
     public AppContext()
     {
-        new FormLauncher().Show();
+        new FormLauncher(false).Show();
 
         Thread.Sleep(1000);
         _form1 = new("russ", "172.18.31.108", 32123);

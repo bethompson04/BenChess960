@@ -1,5 +1,8 @@
 ﻿using Chess.Core.Pieces;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Chess.Core
 {
@@ -58,8 +61,9 @@ namespace Chess.Core
         #region constructor
 
         // default constructor
-        public Board(int size, bool addDefaultPieces)
+        public Board(int size, bool addDefaultPieces, bool is960)
         {
+            isChess960 = is960;
             _tiles = new Tile[size, size];
             Size = size;
             CreateTiles(size, size);
@@ -67,8 +71,6 @@ namespace Chess.Core
             if (addDefaultPieces)
             {
                 AddDefaultPieces();
-                _blackKingLocation = new BoardLocation(0, 4);
-                _whiteKingLocation = new BoardLocation(7, 4);
             }
         }
          
@@ -100,16 +102,112 @@ namespace Chess.Core
             }
         }
 
+        private int GetRandomAvailableIndex(List<int> list, int min, int max)
+        {
+            Random ran = new Random();
+
+            int ranInt = ran.Next(min, max);
+
+            // Is the spot taken by a piece already?
+            if (list[ranInt] == 0) return ranInt;
+            else ranInt = GetRandomAvailableIndex(list, min, max);
+
+            return ranInt;
+        }
+
+        private int GetRandomEvenOrOdd(List<int> list, int max, bool even)
+        {
+            int ranInt = GetRandomAvailableIndex(list, 0, max);
+
+            if(even) // Is the desired result even or odd?
+            {
+                if ((ranInt % 2) == 0) return ranInt;
+
+                // If not even, try again
+                return GetRandomEvenOrOdd(list, max, even);
+            }else
+            {
+                if (ranInt % 2 != 0) return ranInt;
+
+                // if not odd, try again
+                return GetRandomEvenOrOdd(list, max, even);
+            }
+
+           
+        }
+
+
+        int b1 = -1;
+        int b2 = -1;
+        int k = -1;
+        int r1 = -1;
+        int r2 = -1;
+        int q = -1;
+        int k1 = -1;
+        int k2 = -1;
+        public List<int> piecePos = new List<int>();
+
         private void AddDefaultPieces()
         {
-            List<int> piecePos = new List<int> { 0,1,2,3,4,5,6,7 };
+            piecePos = new List<int> { 0,0,0,0,0,0,0,0 };
             // DEFAULT: -- Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook --
-            // 0,7 = Rook
-            // 1,6 = Knight
-            // 2,5 = Bishop
-            // 3 = Queen
-            // 4 = King
+            // 0,7 : Rook
+            // 1,6 : Knight
+            // 2,5 : Bishop
+            //  3  : Queen
+            //  4  : King
 
+            if(isChess960)
+            {
+                // Randomized indexes for board pieces
+                // 1 = King | 2 = Queen | 3 = Bishop | 4 = Knight | 5 = Rook
+                Debug.Print("K");
+
+                // Random King Index
+                k = GetRandomAvailableIndex(piecePos, 1, 7);
+                piecePos[k] = 1;
+
+                Debug.Print("R");
+
+                // Random Rook Indexes
+                r1 = GetRandomAvailableIndex(piecePos, k, 8);
+                r2 = GetRandomAvailableIndex(piecePos, 0, k + 1);
+                piecePos[r1] = 5;
+                piecePos[r2] = 5;
+
+                Debug.Print("B");
+
+                // Random Bishop indexes
+                b1 = GetRandomEvenOrOdd(piecePos, 8, true);
+                b2 = GetRandomEvenOrOdd(piecePos, 8, false);
+                piecePos[b1] = 3;
+                piecePos[b2] = 3;
+
+
+                Debug.Print("Q");
+
+                // Random Queen Index
+                q = GetRandomAvailableIndex(piecePos, 0, 8);
+                piecePos[q] = 2;
+
+                Debug.Print("Kn");
+
+                // Random Knight Indexes (filling in the 2 remaining empty spots
+                for (int i = 0; i < 8; i++)
+                {
+                    if (piecePos[i] == 0)
+                    {
+                        piecePos[i] = 4;
+
+                        if (k1 == -1) k1 = i;
+                        else k2 = i;
+                    }
+                }
+
+
+            }
+            _blackKingLocation = new BoardLocation(0, k);
+            _whiteKingLocation = new BoardLocation(7, k);
 
             //loop through each tile in 2d array and add pieces to board tiles
             for (int i = 0; i < 8; i++)
@@ -129,30 +227,30 @@ namespace Chess.Core
                         // player 1's backrow
                         if (i == 7)
                         {
-                            if (j == 0 || j == 7)
-                                _tiles[i, j].Piece = new Rook('w', i, j); // adds both white rooks
-                            if (j == 1 || j == 6)
-                                _tiles[i, j].Piece = new Knight('w', i, j); // adds both white knights
-                            if (j == 2 || j == 5)
-                                _tiles[i, j].Piece = new Bishop('w', i, j); // adds both white bishops
-                            if (j == 3)
+                            if (j == b1 || j == b2)
+                                _tiles[i, j].Piece = new Bishop('w', i, j); // adds both white rooks
+                            if (j == r1 || j == r2)
+                                _tiles[i, j].Piece = new Rook('w', i, j); // adds both white knights
+                            if (j == k1 || j == k2)
+                                _tiles[i, j].Piece = new Knight('w', i, j); // adds both white bishops
+                            if (j == q)
                                 _tiles[i, j].Piece = new Queen('w', i, j); // adds white queen
-                            if (j == 4)
+                            if (j == k)
                                 _tiles[i, j].Piece = new King('w', i, j); // adds white king
                         }
 
                         // player 2's backrow
                         if (i == 0)
                         {
-                            if (j == 0 || j == 7)
-                                _tiles[i, j].Piece = new Rook('b', i, j); // adds both black rooks
-                            if (j == 1 || j == 6)
-                                _tiles[i, j].Piece = new Knight('b', i, j); // adds both black knights
-                            if (j == 2 || j == 5)
-                                _tiles[i, j].Piece = new Bishop('b', i, j); // adds both black bishops
-                            if (j == 3)
+                            if (j == b1 || j == b2)
+                                _tiles[i, j].Piece = new Bishop('b', i, j); // adds both black rooks
+                            if (j == r1 || j == r2)
+                                _tiles[i, j].Piece = new Rook('b', i, j); // adds both black knights
+                            if (j == k1 || j == k2)
+                                _tiles[i, j].Piece = new Knight('b', i, j); // adds both black bishops
+                            if (j == q)
                                 _tiles[i, j].Piece = new Queen('b', i, j); // adds black queen
-                            if (j == 4)
+                            if (j == k)
                                 _tiles[i, j].Piece = new King('b', i, j); // adds black king
                         }
                     }
@@ -193,6 +291,8 @@ namespace Chess.Core
 
                 }
             }
+
+
         }
 
         private void UpdateKingPosition(char color, int row, int col)
